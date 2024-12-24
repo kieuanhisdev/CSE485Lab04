@@ -61,8 +61,9 @@
     <div class="sidebar">
         <h5>Navigation</h5>
         <a href="{{ route('readers.index') }}">Readers</a>
-
         <a href="{{ route('borrow.index') }}">Borrow</a>
+        <a href="{{ route('books.index') }}">Books</a>
+
 
     </div>
     <div class="container mt-4">
@@ -74,5 +75,6 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
 </body>
+
 
 </html>
