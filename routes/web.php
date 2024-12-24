@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\BorrowController;
+use App\Models\Borrow;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('borrow.index');
 });
 
+Route::resource('borrow', BorrowController::class);
 
-Route::get('/hello', function () {
-    return view('hello');
-});
+Route::post('/borrow/{id}/updateStatus', [BorrowController::class, 'updateStatus'])->name('borrow.updateStatus');
+
+
+Route::get('/borrow/history/{borrow}', [BorrowController::class, 'history'])->name('borrow.history');
