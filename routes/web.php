@@ -1,12 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\BookController;
 
 
-Route::get('/hello', function () {
-    return view('hello');
-});
+Route::get('/', [BookController::class, 'index']);
+Route::resource('books', BookController::class);
+Route::get('/books/{book}/confirm-delete', [BookController::class, 'confirmDelete'])->name('books.confirmDelete');
+
+
