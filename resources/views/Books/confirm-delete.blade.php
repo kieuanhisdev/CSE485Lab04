@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" >
         <h1>Confirm Delete</h1>
         <p>Are you sure you want to delete the book: <strong>{{ $book->title }}</strong>?</p>
 
