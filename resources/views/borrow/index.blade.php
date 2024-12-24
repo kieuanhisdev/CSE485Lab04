@@ -7,7 +7,7 @@
             <div class="text-success"> {{ session('success') }}</div>
         @endif
         <a href="{{ route('borrow.create') }}" class="btn btn-primary">Add</a>
-        <table class="table">
+        <table class="table table-bordered table-striped text-center align-middle">
             <thead>
                 <tr>
                     <th class="">ID</th>
