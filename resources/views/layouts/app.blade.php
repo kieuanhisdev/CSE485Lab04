@@ -54,7 +54,8 @@
     <div class="sidebar">
         <h5>Navigation</h5>
         <a href="{{ route('readers.index') }}">Readers</a>
-       
+        <a href="{{ route('books.index') }}">Books</a>
+
     </div>
     <div class="container mt-4">
         @yield('content')
