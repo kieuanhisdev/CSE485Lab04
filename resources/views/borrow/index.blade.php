@@ -1,12 +1,22 @@
 @extends('layouts.app')
 {{-- @extends('tasks.delete') --}}
 @section('content')
-    <div class="container">
-        <h1>Borrow List</h1>
+    <div class="container container mt-5">
         @if (session('success'))
-            <div class="text-success"> {{ session('success') }}</div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
+
         <a href="{{ route('borrow.create') }}" class="btn btn-primary">Add</a>
+
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">Borrow List</h1>
+            <a href="{{ route('borrow.create') }}" class="btn btn-primary">Add</a>
+        </div>
+
         <table class="table table-bordered table-striped text-center align-middle">
             <thead>
                 <tr>
@@ -33,26 +43,33 @@
                             </span>
                         </td>
 
-                        <td>
-                            <div class="d-flex align-items-center" style="height: 100%;">
+                        <td style="text-align: center">
+                            <div class="d-flex justify-content-between align-items-center" style="height: 100%;">
                                 <form action="{{ route('borrow.updateStatus', $borrow->id) }}" method="POST">
                                     @csrf
                                     @method('POST')
-                                    <button type="submit" class="btn btn-primary">Return Book</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Return Book</button>
                                 </form>
 
-                                <a href="{{ route('borrow.show', $borrow->id) }}" class="btn btn-info mx-2">
-                                    <i class="bi bi-eye-fill"></i>
-                                </a> <a href="{{ route('borrow.edit', $borrow->id) }}" class="btn btn-warning mx-2"> <i
-                                        class="bi bi-pencil-fill"></i> </a>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $borrow->id }}"
-                                    class="btn btn-danger mx-2">
-                                    <i class="bi bi-trash-fill"></i>
+                                <a href="{{ route('borrow.show', $borrow->id) }}" class="btn btn-info btn-sm">
+                                    <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{ route('borrow.history', $borrow->id) }}" class="btn btn-success"><i
-                                        class="bi bi-clock-history"></i></a>
+
+                                <a href="{{ route('borrow.edit', $borrow->id) }}" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $borrow->id }}"
+                                    class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+
+                                <a href="{{ route('borrow.history', $borrow->id) }}" class="btn btn-success btn-sm">
+                                    <i class="bi bi-clock-history"></i>
+                                </a>
                             </div>
                         </td>
+
                     </tr>
 
                     <div class="modal fade" id="deleteModal{{ $borrow->id }}" tabindex="-1"

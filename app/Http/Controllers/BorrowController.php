@@ -64,6 +64,15 @@ class BorrowController extends Controller
             'status' => 'required|in:0,1',
         ]);
 
+        // Lấy book_id từ request
+        $bookId = $request->input('book_id');
+
+        // Tìm sách và giảm số lượng
+        $book = Book::findOrFail($bookId);
+        $book->quantity = $book->quantity - 1;
+        $book->save();
+
+        // Tạo bản ghi mượn sách
         Borrow::create([
             'reader_id' => $request->input('reader_id'),
             'book_id' => $request->input('book_id'),
@@ -74,6 +83,7 @@ class BorrowController extends Controller
 
         return redirect()->route('borrow.index')->with('success', 'Successfully added.');
     }
+
 
     /**
      * Display the specified resource.
@@ -101,10 +111,22 @@ class BorrowController extends Controller
 
     public function updateStatus(string $id)
     {
+        // Tìm bản ghi mượn sách
         $borrow = Borrow::findOrFail($id);
+
+        // Lấy thông tin sách từ borrow record
+        $book = Book::findOrFail($borrow->book_id);
+
+        // Tăng số lượng sách vì sách đã được trả
+        $book->quantity = $book->quantity + 1;
+        $book->save();
+
+        // Cập nhật trạng thái mượn sách thành đã trả
         $borrow->update(['status' => 1]);
+
         return redirect()->route('borrow.index')->with('success', 'Return book successfully');
     }
+
 
     public function history(Borrow $borrow)
     {
