@@ -2,9 +2,21 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="container container mt-5">
-        <h1>List book</h1>
-        <a href="{{ route('books.create') }}" class="btn btn-primary">add new book</a>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">Book List</h1>
+            <a href="{{ route('books.create') }}" class="btn btn-primary">Add</a>
+        </div>
         <table class="table table-bordered table-striped text-center align-middle">
             <thead>
             <tr>
@@ -38,7 +50,7 @@
             </tbody>
         </table>
     </div>
-    <div class="d-flex justify-content-end">
+    <div class="paginastion">
         {{ $books->links() }}
     </div>
 @endsection
