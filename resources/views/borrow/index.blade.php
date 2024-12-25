@@ -1,12 +1,18 @@
 @extends('layouts.app')
 {{-- @extends('tasks.delete') --}}
 @section('content')
-    <div class="container">
-        <h1>Borrow List</h1>
+    <div class="container container mt-5">
         @if (session('success'))
-            <div class="text-success"> {{ session('success') }}</div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
-        <a href="{{ route('borrow.create') }}" class="btn btn-primary">Add</a>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">Borrow List</h1>
+            <a href="{{ route('borrow.create') }}" class="btn btn-primary">Add</a>
+        </div>
         <table class="table table-bordered table-striped text-center align-middle">
             <thead>
                 <tr>
