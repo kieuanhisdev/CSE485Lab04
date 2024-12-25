@@ -29,6 +29,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">save</button>
+            <a href="{{ route('books.index') }}" class="btn btn-secondary">back</a>
         </form>
     </div>
 @endsection
