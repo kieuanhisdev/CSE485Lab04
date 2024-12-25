@@ -43,7 +43,10 @@
                                 class="bi bi-eye"></i></a>
                         <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm"><i
                                 class="bi bi-pencil"></i></a>
-                        <a href="{{ route('books.confirmDelete', $book) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                onclick="setDeleteAction('{{ route('books.destroy', $book->id) }}')">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
             @endforeach
@@ -53,6 +56,35 @@
     <div class="paginastion">
         {{ $books->links() }}
     </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this book?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form id="deleteForm" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setDeleteAction(actionUrl) {
+            const deleteForm = document.getElementById('deleteForm');
+            deleteForm.setAttribute('action', actionUrl);
+        }
+    </script>
 @endsection
 
 

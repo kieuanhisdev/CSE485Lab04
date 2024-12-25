@@ -20,4 +20,3 @@ Route::resource('readers', ReaderController::class);
 
 Route::resource('books', BookController::class);
 
-Route::get('/books/{book}/confirm-delete', [BookController::class, 'confirmDelete'])->name('books.confirmDelete');
