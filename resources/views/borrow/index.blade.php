@@ -48,16 +48,16 @@
                                 </form>
 
                                 <a href="{{ route('borrow.show', $borrow->id) }}" class="btn btn-info btn-sm">
-                                    <i class="bi bi-eye-fill"></i>
+                                    <i class="bi bi-eye"></i>
                                 </a>
 
                                 <a href="{{ route('borrow.edit', $borrow->id) }}" class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil-fill"></i>
+                                    <i class="bi bi-pencil"></i>
                                 </a>
 
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $borrow->id }}"
                                     class="btn btn-danger btn-sm">
-                                    <i class="bi bi-trash-fill"></i>
+                                    <i class="bi bi-trash"></i>
                                 </a>
 
                                 <a href="{{ route('borrow.history', $borrow->id) }}" class="btn btn-success btn-sm">
